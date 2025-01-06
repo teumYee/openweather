@@ -1,34 +1,29 @@
-<h1>Open Weather</h1>
+# open-weather-api
 
-<hr>
-오픈 웨더 API를 활용한 날씨 웹을 만들어보았습니다. (해커스 HRD)
+This template should help get you started developing with Vue 3 in Vite.
 
+## Recommended IDE Setup
 
-<h3>🌟목표</h3>
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-1. UI를 유기체적으로 구조를 짜서 개발을 해보는 것이 목표였습니다.
-2. 깃허브 프로젝트 작성을 원활히 하기 위한 연습도 포함되어있습니다.
+## Customize configuration
 
+See [Vite Configuration Reference](https://vite.dev/config/).
 
-<h3>🌟주요 기능</h3>
+## Project Setup
 
-1. 실시간 날씨 정보 제공
-2. 위치 기반 날씨 조회
-3. 시각적이고 직관적인 UI
-4. 다양한 날씨 정보(온도, 습도, 기압 등) 제공
+```sh
+npm install
+```
 
-<h3>⚙️STACK</h3>
+### Compile and Hot-Reload for Development
 
-🖥️Frontend(Web)
+```sh
+npm run dev
+```
 
--Language: js, html/css, scss
+### Compile and Minify for Production
 
--Library&FrameWork: Vue.js
-
-⚙️Backend:
-
--API: OPEN Weather API
-
-
-
-
+```sh
+npm run build
+```
