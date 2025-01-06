@@ -1,0 +1,18 @@
+<template>
+  <RouterView />
+</template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+body {
+  margin: 0;
+  padding: 0;
+}
+</style>
