@@ -28,7 +28,7 @@ import WEATHERBOX from "../molecules/WeatherBox.vue";
 import MAP from "../molecules/Map.vue";
 import DAILYWEATHER from "../molecules/DailyWeather.vue";
 import GRAPH from "../molecules/Graph.vue";
-#컴포넌트각각 여기로 헤쳐모여
+
 export default {
   components: {
     WEATHERBOX,
