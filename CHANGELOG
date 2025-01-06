@@ -80,4 +80,28 @@ edit 버전
   - molecules/DailyWeather.vue 파일 생성: 시간대별 날씨 데이터를 보여주는 UI 컴포넌트 제작 
   - molecules/Graph.vue 파일 생성: 그래프 클래스 생성 후 스타일링 적용
 
+## [1.0.1]
+### Added
+-API 연동 후 동적 데이터 바인딩 성공.
+-이미지 연동.
+-dayjs로 현재를 불러옴.
+
+### 데이터 바인딩
+  -npm install axios 설치 후 import
+  -organisms/index.vue에 나의 api 키 값을 입력하고 get()함수를 이용해 API 호출.
+  -WeatherBox data() 안에 여러 변수를 선언 후 this로 접근.
+  -template에서 {{}}로 앞서 변수로 데이터 바인딩.
+  -데이터 값과 이미지를 맵핑해서 연동.
+  -프롬을 이용해 자식 데이터로 보냄.
+### API 키 오류
+  -API 키가 활성화되지 않는다고 뜸. 그래서 다른 Weather API 키로 대체함.
+### API 키 데이터 구조가 다름.
+  -API 키 호출 방법이 아예 다른 것 같아. 일단은 API 호출은 성공했으니 나중에 할 예정.
+### 비동기적 호출 경고
+  - async와 await 이용.
+### dayjs
+  - npm install dayjs로 불러옴.
+  - computed 함수 선언.
+
+
   
