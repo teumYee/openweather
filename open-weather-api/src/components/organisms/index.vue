@@ -2,22 +2,21 @@
   <div class="page">
     <header class="page__header">
       <span class="page__header__region">Seoul, Korea</span>
-      <span class="page__header__date">1900.01.01</span>
+      <span class="page__header__date">{{ date }}</span>
     </header>
     <body div class="page__body">
       <div class="page__body__main">
         <div class="data-box">
           <WEATHERBOX />
           <div class="data-box__graph-box">
-            <GRAPH />
-            <GRAPH />
-            <GRAPH />
+            <!-- item이라는 데이터를 프롬 , 반복문 사용-->
+            <GRAPH v-for="item in graphData" :key="item.label" :data="item" />
           </div>
         </div>
         <MAP />
       </div>
       <div class="page__body__daily">
-        <DAILYWEATHER />
+        <DAILYWEATHER v-for="item in hourlyData" :key="item" :data="item" />
       </div>
     </body>
   </div>
@@ -28,16 +27,39 @@ import WEATHERBOX from "../molecules/WeatherBox.vue";
 import MAP from "../molecules/Map.vue";
 import DAILYWEATHER from "../molecules/DailyWeather.vue";
 import GRAPH from "../molecules/Graph.vue";
+import axios from "axios";
+import dayjs from "dayjs";
 
 export default {
   components: {
-    WEATHERBOX,
     MAP,
     DAILYWEATHER,
     GRAPH,
   },
   data() {
-    return {};
+    return {
+      graphData: [
+        // 하나 하나가 아이템을 지칭
+        { label: "Precipitation", value: "38%" },
+        { label: "Humidty", value: "50%" },
+        { label: "UV Index", value: "10" },
+      ],
+      hourlyData: [],
+    };
+  },
+  computed: {
+    date() {
+      // 현재 날짜 및 시간
+      const current = dayjs(new Date());
+      return current.format("dd, DD MMM YYYY");
+    },
+  },
+  async created() {
+    const res = await axios.get(
+      "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/seoul?key=2ZVN24EB75VNNREN6P559FVQY&unitGroup=metric&lang=ko"
+    );
+    console.log(res);
+    this.hourlyData = res.data.hourly;
   },
 };
 </script>

@@ -3,25 +3,59 @@
   <div class="weather-box">
     <div class="weather-box__icon-box">
       <div class="weather-box__icon-box__info">
-        <span class="temp">25도</span>
-        <span class="desc">선선함</span>
+        <span class="temp">{{ Math.round(currentTemp) + "°C" }}</span>
+        <span class="desc">{{ currentDesc }}</span>
         <span class="update">Updated 1:48pm</span>
       </div>
-      <img src="" alt="" class="weather-box__icon-box__icon" />
+      <img
+        :src="`../../assets/images/${currentWeatherIcon}.png`"
+        alt=""
+        class="weater-box__icon-box__icon"
+      />
     </div>
-
     <div class="weather-box__detail">
-      <span class="weather-box__detail__item">Barometer: 1,000mb</span>
-      <span class="weather-box__detail__item">Feels Like: 25도</span>
-      <span class="weather-box__detail__item">Humidity: 50%</span>
+      <span class="weather-box__detail__item">{{ currentBarometer }}mb</span>
+      <span class="weather-box__detail__item"
+        >Feels Like: {{ Math.round(currentFeelsLike) + "&deg;C" }}</span
+      >
+      <span class="weather-box__detail__item"
+        >Humidity: {{ currentHumidity }}%</span
+      >
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
-    return {};
+    return {
+      currentTemp: "",
+      currentDesc: "",
+      currentBarometer: "",
+      currentFeelsLike: "",
+      currentHumidity: "",
+      currentWeatherIcon: "",
+    };
+  },
+  async created() {
+    //컴포넌트가 생성된 직후의 접근할 수 있는 라이프 사이클 훅
+    const res = await axios.get(
+      "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/seoul?key=2ZVN24EB75VNNREN6P559FVQY&unitGroup=metric&lang=ko"
+    );
+    console.log(res);
+    console.log(currentConditions);
+    console.log(res.data); // 전체 응답 데이터를 출력하여 구조 확인
+    // 예상 데이터 구조를 기반으로 데이터 추출
+    const currentConditions =
+      res.data.currentConditions || res.data.days[0].currentConditions;
+    console.log(currentConditions); // 데이터 구조 확인
+    // const currentConditions = res.data.currentConditions;
+    this.currentTemp = currentConditions.temp;
+    this.currentDesc = currentConditions.conditions;
+    this.currentBarometer = currentConditions.pressure;
+    this.currentFeelsLike = currentConditions.feelslike;
+    this.currentHumidity = currentConditions.humidity;
   },
 };
 </script>
