@@ -60,7 +60,7 @@ export default {
         // 마커가 지도 위에 표시되도록 설정.
         marker.setMap(map);
 
-        // 마커를 클릭했을 때, 클릭이벤트 생성
+        // 마커를 클릭했을 때, 클릭이벤트 생성함.
         kakao.maps.event.addListener(marker, "click", () => {
           const res = marker.getPosition();
           console.log(res);
