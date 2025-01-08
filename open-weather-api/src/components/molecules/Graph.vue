@@ -4,7 +4,15 @@
   <div class="graph">
     <div class="graph__outer"></div>
     <div class="graph__inner"></div>
-    <div class="graph__middle"></div>
+    <div
+      class="graph__middle"
+      :style="{
+        background: `conic-gradient(
+              #3abbe0 0% ,
+              #ffffff  100%
+            )`,
+      }"
+    ></div>
     <span class="graph__value">그래프 값</span>
     <span class="graph__name">그래프 이름</span>
   </div>
