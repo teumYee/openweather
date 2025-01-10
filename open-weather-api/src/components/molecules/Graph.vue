@@ -8,20 +8,51 @@
       class="graph__middle"
       :style="{
         background: `conic-gradient(
-              #3abbe0 0% ,
-              #ffffff  100%
+              #3abbe0 0% ${data.value},
+              #ffffff ${data.value} 100%
             )`,
       }"
     ></div>
-    <span class="graph__value">그래프 값</span>
-    <span class="graph__name">그래프 이름</span>
+    <span class="graph__value">{{ data.value }}</span>
+    <span class="graph__name">{{ data.label }}</span>
   </div>
 </template>
 
-<script>
+<script setup>
+const props = defineProps({
+  data: {
+      type: Object,
+      required: true,
+    },
+})
+
 export default {
+  // 데이터를 전달받음.
+  props: {
+    data: {
+      type: Object,
+      required: true,
+  },
   data() {
-    return {};
+    return {
+      // 초기화할 데이터가 있다면 여기에 추가
+      data: {
+        value: "50%",
+      },
+    };
+  },
+  created() {
+    // 컴포넌트가 생성된 직후의 접근할 수 있는 라이프 사이클 훅
+    // const res = await axios.get(
+    //   "https://api.openweathermap.org/data/2.5/onecall?lat=33&lon=126&appid=823b934b8ed392af155a8e73ac5721f7&units=metric"
+    // );
+    // this.currentTemp = res.data.current.temp;
+    // this.currentDesc = res.data.current.weather[0].description;
+    // this.currentBarometer = res.data.current.pressure;
+    // this.currentFeelsLike = res.data.current.feels_like;
+    // this.currentHumidity = res.data.current.humidity;
+    // this.currentWeatherIcon = res.data.current.weather[0].icon;
+    // console.log(res);
   },
 };
 </script>

@@ -3,55 +3,68 @@
   <div class="weather-box">
     <div class="weather-box__icon-box">
       <div class="weather-box__icon-box__info">
-        <span class="temp">{{ Math.round(currentTemp) + "°C" }}</span>
-        <span class="desc">{{ currentDesc }}</span>
+        <span class="temp">{{ Math.round(data.temp) + "°C" }}</span>
+        <span class="desc">{{ data.desc }}</span>
         <span class="update">Updated 1:48pm</span>
       </div>
       <img
-        :src="`../../assets/images/${currentWeatherIcon}.png`"
+        :src="`../../assets/images/${data.icon}.png`"
         alt=""
         class="weater-box__icon-box__icon"
       />
     </div>
     <div class="weather-box__detail">
-      <span class="weather-box__detail__item">{{ currentBarometer }}mb</span>
+      <span class="weather-box__detail__item">{{ data.barometer }}mb</span>
       <span class="weather-box__detail__item"
-        >Feels Like: {{ Math.round(currentFeelsLike) + "&deg;C" }}</span
+        >Feels Like: {{ Math.floor(data.feelsLike) + "&deg;C" }}</span
       >
       <span class="weather-box__detail__item"
-        >Humidity: {{ currentHumidity }}%</span
+        >Humidity: {{ data.humidity }}%</span
       >
     </div>
   </div>
 </template>
 
-<script>
-import axios from "axios";
-export default {
-  data() {
-    return {
-      currentTemp: "",
-      currentDesc: "",
-      currentBarometer: "",
-      currentFeelsLike: "",
-      currentHumidity: "",
-      currentWeatherIcon: "",
-    };
+<script setup>
+// import axios from "axios";
+
+const props = defineProps({
+  data: {
+    type: Object,
+    required: true,
   },
-  async created() {
-    //컴포넌트가 생성된 직후의 접근할 수 있는 라이프 사이클 훅
-    const res = await axios.get(
-      "https://api.openweathermap.org/data/2.5/onecall?lat=33&lon=126&appid=bd2952b0261291bbe33caa218fb56a4e&units=metric"
-    );
-    this.currentTemp = res.data.current.temp;
-    this.currentDesc = res.data.current.weather[0].description;
-    this.currentBarometer = res.data.current.pressure;
-    this.currentFeelsLike = res.data.current.feels_like;
-    this.currentHumidity = res.data.current.humidity;
-    this.currentWeatherIcon = res.data.current.weather[0].icon;
-    console.log(res);
-  },
-};
+});
+// export default {
+//   props: {
+//     data: {
+//       type: Object,
+//       required: true,
+//     },
+//   },
+// data() {
+//   return {
+//     currentTemp: "",
+//     currentDesc: "",
+//     currentBarometer: "",
+//     currentFeelsLike: "",
+//     currentHumidity: "",
+//     currentWeatherIcon: "",
+//   };
+// },
+//   async created() {
+//     // 컴포넌트가 생성된 직후의 접근할 수 있는 라이프 사이클 훅
+//     // const res = await axios.get(
+//     //   "https://api.openweathermap.org/data/2.5/onecall?lat=33&lon=126&appid=9245b448bf6eea1ec02c2aefdaeb48a2&units=metric"
+//     // );
+//     // this.currentTemp = res.data.current.temp;
+//     // this.currentDesc = res.data.current.weather[0].description;
+//     // this.currentBarometer = res.data.current.pressure;
+//     // this.currentFeelsLike = res.data.current.feels_like;
+//     // this.currentHumidity = res.data.current.humidity;
+//     // this.currentWeatherIcon = res.data.current.weather[0].icon;
+//     // console.log(res);
+//   },
+// };
 </script>
 
 <style lang="scss" scoped>

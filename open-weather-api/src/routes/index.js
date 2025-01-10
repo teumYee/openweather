@@ -2,6 +2,7 @@
 // URL에 해시(#)를 사용하여 페이지를 구분
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "@pages/index.vue";
+// import About from "@pages/about.vue";
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -13,5 +14,11 @@ export default createRouter({
       name: "home", // 경로의 이름.
       component: Home, //Home 컴포넌트
     },
+    // // 컴포지션 학습
+    // {
+    //   path: "/about",
+    //   name: "about",
+    //   component: About,
+    // },
   ],
 });
